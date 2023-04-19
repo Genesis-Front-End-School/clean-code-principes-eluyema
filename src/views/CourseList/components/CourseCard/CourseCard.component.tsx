@@ -14,24 +14,13 @@ import {
   CardLessonsSection,
   CardSkillsSection,
 } from "./CourseCard.styles";
+import { getSkills } from "./utils";
 
 interface CourseCard {
   course: PreviewCourse;
 }
 
 const CourseCard: FC<CourseCard> = ({ course }) => {
-  const getSkills = (meta: null | CourseMeta) => {
-    if (!meta || !meta.skills) {
-      return "";
-    }
-
-    return meta.skills.reduce((accumulator, currentValue, index) => {
-      if (index === 0) {
-        return currentValue;
-      }
-      return accumulator + ", " + currentValue;
-    }, "");
-  };
   const skills = getSkills(course.meta);
 
   return (

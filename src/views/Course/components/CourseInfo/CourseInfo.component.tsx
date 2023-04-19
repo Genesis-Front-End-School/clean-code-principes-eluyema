@@ -14,25 +14,13 @@ import {
   CourseTimeBlock,
   CourseTitleBlock,
 } from "./CourseInfo.styles";
+import { getFormattedDate, getTags } from "./utils";
 
 interface CourseInfoProps {
   course: PreviewCourseResponse;
 }
 
 const CourseInfo: FC<CourseInfoProps> = ({ course }) => {
-  const getFormattedDate = (strDate: string) => {
-    const date = new Date(strDate);
-    return date.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
-  };
-
-  const getTags = (meta: CourseMeta) => {
-    if (!meta.skills || meta.skills.length === 0) {
-      return [];
-    }
-
-    return meta.skills.map((skill) => <Chip label={skill} key={skill} />);
-  };
-
   const { hours, minutes } = getHoursAndMinutes(course.duration);
 
   return (
